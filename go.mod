@@ -16,3 +16,5 @@ require (
 	modernc.org/mathutil v1.7.1 // indirect
 	modernc.org/memory v1.11.0 // indirect
 )
+
+replace go.codycody31.dev/nano64 => github.com/pisoj/go-nano64 v0.0.0-20260122195506-5c4b67c1779d
