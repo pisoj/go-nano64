@@ -8,7 +8,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"go.codycody31.dev/nano64"
+	"github.com/pisoj/nano64"
 	_ "modernc.org/sqlite"
 )
 

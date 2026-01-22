@@ -1,4 +1,4 @@
-module go.codycody31.dev/nano64
+module github.com/pisoj/nano64
 
 go 1.23.0
 

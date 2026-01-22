@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"go.codycody31.dev/nano64"
+	"github.com/pisoj/nano64"
 )
 
 func main() {
