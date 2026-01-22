@@ -18,4 +18,4 @@ jobs:
           go-version: "1.23.0"
 
       - name: Run Tests
-        run: go test github.com/pisoj/nano64 -v -cover
+        run: go test github.com/pisoj/go-nano64 -v -cover

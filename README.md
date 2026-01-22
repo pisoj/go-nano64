@@ -2,8 +2,8 @@
 
 **Nano64** is a lightweight library for generating time-sortable, globally unique IDs that offer the same practical guarantees as ULID or UUID in half the storage footprint; reducing index and I/O overhead while preserving cryptographic-grade randomness. Includes optional monotonic sequencing and AES-GCM encryption.
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/pisoj/nano64.svg)](https://pkg.go.dev/github.com/pisoj/nano64)
-[![Go Report Card](https://goreportcard.com/badge/github.com/pisoj/nano64)](https://goreportcard.com/report/github.com/pisoj/nano64)
+[![Go Reference](https://pkg.go.dev/badge/github.com/pisoj/go-nano64.svg)](https://pkg.go.dev/github.com/pisoj/go-nano64)
+[![Go Report Card](https://goreportcard.com/badge/github.com/pisoj/go-nano64)](https://goreportcard.com/report/github.com/pisoj/go-nano64)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > **Note:** This is a Go port of the original [Nano64 TypeScript/JavaScript library](https://github.com/only-cliches/nano64) by [@only-cliches](https://github.com/only-cliches). All credit for the original concept, design, and implementation goes to the original author. This port aims to bring the same powerful, compact ID generation capabilities to the Go ecosystem.
@@ -20,7 +20,7 @@
 ## Installation
 
 ```bash
-go get github.com/pisoj/nano64
+go get github.com/pisoj/go-nano64
 ```
 
 ## Usage
@@ -30,7 +30,7 @@ go get github.com/pisoj/nano64
 ```go
 import (
     "fmt"
-    "github.com/pisoj/nano64"
+    "github.com/pisoj/go-nano64"
 )
 
 func main() {
@@ -71,7 +71,7 @@ fmt.Println(nano64.Compare(a, b)) // -1
 IDs can easily be encrypted and decrypted to mask their timestamp value from public view.
 
 ```go
-import "github.com/pisoj/nano64"
+import "github.com/pisoj/go-nano64"
 
 // Create encryption key (32 bytes for AES-256)
 key := make([]byte, 32)
@@ -113,7 +113,7 @@ Store `id.ToBytes()` as an **8‑byte big‑endian binary** value, or use the bu
 ```go
 import (
     "database/sql"
-    "github.com/pisoj/nano64"
+    "github.com/pisoj/go-nano64"
 )
 
 type User struct {

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/pisoj/nano64"
+	"github.com/pisoj/go-nano64"
 )
 
 func main() {

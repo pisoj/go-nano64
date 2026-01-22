@@ -8,7 +8,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/pisoj/nano64"
+	"github.com/pisoj/go-nano64"
 	_ "modernc.org/sqlite"
 )
 

@@ -8,7 +8,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/pisoj/nano64"
+	"github.com/pisoj/go-nano64"
 )
 
 // formatNumberWithCommas formats a number with comma separators for readability

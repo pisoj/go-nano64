@@ -1,4 +1,4 @@
-module github.com/pisoj/nano64
+module github.com/pisoj/go-nano64
 
 go 1.23.0
 
