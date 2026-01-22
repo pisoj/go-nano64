@@ -143,6 +143,27 @@ err = db.QueryRow("SELECT id, name FROM users WHERE id = ?", id).Scan(&user.ID, 
 | CockroachDB | `BYTES` (8)       | ✅              | Bytewise ordering.                                                     |
 | DuckDB      | `BLOB` (8)        | ✅              | Bytewise ordering.                                                     |
 
+### Storing IDs as signed integers
+
+While storing IDs as binary is the most direct method, many databases, ORMs, and drivers work more easily with native integer types.
+
+The [SignedNano64](#ids-as-signed-integers) utility bridges this gap by converting IDs to and from signed 64-bit integers (BIGINT or INTEGER) while perfectly preserving their sort order — which is critical for time-based range queries.
+
+**Appropriate column types:**
+
+| DBMS | Column Type | Notes |
+| :--- | :--- | :--- |
+| SQLite | `INTEGER` | Native signed 8-byte integer type. |
+| PostgreSQL | `BIGINT` | Standard 64-bit signed integer. Alias: `INT8`. |
+| MySQL 8+ | `BIGINT` | Standard 64-bit signed integer type. |
+| MariaDB | `BIGINT` | Same as MySQL. |
+| SQL Server | `BIGINT` | Standard 64-bit signed integer type. |
+| Oracle | `NUMBER(19)` | Standard representation of a 64-bit signed integer. |
+| CockroachDB | `BIGINT` | PostgreSQL-compatible 64-bit integer. Alias: `INT8`. |
+| DuckDB | `BIGINT` | Standard 64-bit signed integer type. Alias: `INT64`. |
+
+All of these compare signed integers numerically, **preserving** Nano64’s **natural order** when stored through SignedNano64.
+
 ## Comparison with other identifiers
 
 | Property               | **Nano64**                                | **ULID**                    | **UUIDv4**              | **Snowflake ID**             |
@@ -205,6 +226,13 @@ err = db.QueryRow("SELECT id, name FROM users WHERE id = ?", id).Scan(&user.ID, 
 * **`config.Encrypt(id Nano64) (*EncryptedNano64, error)`** - Encrypt existing ID
 * **`config.FromEncryptedHex(hex string) (*EncryptedNano64, error)`** - Decrypt from hex
 * **`config.FromEncryptedBytes(bytes []byte) (*EncryptedNano64, error)`** - Decrypt from bytes
+
+### IDs as signed integers
+
+* **`SignedNano64.FromId(id Nano64) int64`** - Returns signed int representation of an ID
+* **`SignedNano64.ToId(signedIntId int64) Nano64`** - Converts a signed int back to the normal Nano64 format
+* **`SignedNano64.TimeRange(timestampStart int64, timestampEnd int64) (int64, int64, error)`** - Returns uttermost IDs for a timestamp range (useful for BETWEEN queries)
+* **`SignedNano64.GetTimestamp(signedIntId int64) int64`** - Extracts embedded epoch milliseconds
 
 ## Design
 
